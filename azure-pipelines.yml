@@ -15,11 +15,19 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  name: Restore
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'restore'
+    projects: '**/*RestSharpWithCSharp.csproj'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  name: Build
+  inputs:
+    command: 'build'
+    projects: '**/*RestSharpWithCSharp.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: VSBuild@1
   inputs:
