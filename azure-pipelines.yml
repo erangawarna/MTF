@@ -30,5 +30,8 @@ steps:
 
 - task: VSTest@2
   inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*RestSharpWithCSharp.dll
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
